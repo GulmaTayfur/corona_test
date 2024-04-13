@@ -1,7 +1,8 @@
 const Loader = () => {
   const arr = new Array(16).fill("a");
-  return arr.map(() => (
+  return arr.map((item, index) => (
     <div
+      key={index}
       data-testid="card-loader"
       className="h-[88px] bg-gray-200 p-4 rounded-lg shadow-md text-gray-600 min-w-[218px] animate-pulse"
     >

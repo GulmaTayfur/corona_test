@@ -1,27 +1,29 @@
 import { FaVirus } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
 import { TbVaccine } from "react-icons/tb";
+import { Link, useNavigate } from "react-router-dom";
+import Form from "./Form";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // aratılan metin
+    const text = e.target[0].value;
+
+    // kullanıcıyı detay sayfasına yönlendir
+    navigate(`/detail/${text}`);
+  };
   return (
     <header className="flex bg-zinc-900 text-white py-5 px-5 md:px-20 justify-between items-center">
-      <div className="flex items-center gap-2">
+      <Link to={"/"} className="flex items-center gap-2">
         <FaVirus className="text-green-500 text-xl" />
         <h1 className="font-mono whitespace-nowrap font-semibold text-lg md:text-2xl">
           COVİD Takip
         </h1>
-      </div>
+      </Link>
 
-      <form className="flex items-center border outline-none  rounded ">
-        <input
-          className="bg-transparent px-1 py-1 md:px-5"
-          type="text"
-          placeholder="Ülke İsmine Göre Ara"
-        />
-        <button className="bg-green-500 text-xl p-1 md:p-2 w-full h-full rounded transition hover:bg-green-600">
-          <CiSearch />
-        </button>
-      </form>
+      <Form handleSubmit={handleSubmit} />
 
       <div className="flex items-center gap-3 max-md:hidden">
         <p className="flex flex-col text-sm">
